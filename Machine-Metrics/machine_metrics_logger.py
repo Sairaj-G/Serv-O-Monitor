@@ -1,27 +1,18 @@
 from data_models import *
-import threading
+from influx_db_client import *
 
-metrics_in_json = {}
+
+
 
 def update_metrics():
-    global metrics_in_json
+    print("Update data called")
     while True:
-        cpu_metric = CPUMetrics()
-        disk_metric = DiskMetrics()
-        #network_metric = NetworkMetrics()
-        memory_metric = MemoryMetrics()
+        
+        log_cpu_metric()
+        log_disk_metrics()
 
-        all_metrics = cpu_metric.__dict__
-        all_metrics.update(disk_metric.__dict__)
-        #all_metrics.update(network_metric.__dict__)
-        all_metrics.update(memory_metric.__dict__)
+        print("Added data")
 
-        metrics_in_json.clear()
-        metrics_in_json.update(all_metrics)
-
-        print(metrics_in_json)
         time.sleep(60)
-
-threading.Thread(target=update_metrics, daemon=True).start()
 
 
