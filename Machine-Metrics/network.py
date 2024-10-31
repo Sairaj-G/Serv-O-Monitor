@@ -3,6 +3,7 @@ import socket
 import speedtest
 import subprocess
 import re
+
 network = speedtest.Speedtest(secure=True)
 
 def get_hostname():

@@ -1,4 +1,5 @@
 import psutil
+
 def get_ram_memory_total_GB():
     ram_memory_total = psutil.virtual_memory()[0]/(1024**3)
     return ram_memory_total
