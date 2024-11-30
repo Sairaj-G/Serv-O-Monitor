@@ -33,3 +33,26 @@ def log_disk_metrics():
 
     write_api.write(bucket=bucket, org="ORG_NAME", record=point)
 
+def log_network_metric():
+    network_metric = NetworkMetrics()
+    point = Point("network_metrics") \
+    .field("host_name", network_metric.host_name) \
+    .field("ip_address", network_metric.ip_address) \
+    .field("wifi_signal_strength_percent", network_metric.wifi_signal_strength_percent) \
+    .field("interface_name", network_metric.interface_name) \
+    .field("download_speed", network_metric.download_speed) \
+    .field("upload_speed", network_metric.upload_speed)
+        
+    write_api.write(bucket=bucket, org="ORG_NAME", record=point)
+
+def log_memory_metrics():
+    memory_metric = MemoryMetrics()
+    point = Point("disk_metrics") \
+    .field("ram_memory_total_GB", memory_metric.ram_memory_total_GB) \
+    .field("ram_memory_used_GB", memory_metric.ram_memory_used_GB)\
+    .field("ram_usage_percent", memory_metric.ram_usage_percent)\
+    .field("swap_memory_GB", memory_metric.swap_memory_GB)\
+    .field("swap_memory_used_GB", memory_metric.swap_memory_used_GB)
+
+    write_api.write(bucket=bucket, org="ORG_NAME", record=point)
+
