@@ -1,7 +1,7 @@
 from disk import *
 from cpu import *
 from memory import *
-#from network import *
+from network import *
 
 class CPUMetrics:
 
