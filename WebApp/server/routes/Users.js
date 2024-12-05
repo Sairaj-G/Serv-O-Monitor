@@ -20,6 +20,7 @@ router.post("/addUser", async (req, res)=>{
     // const password = req.Password;
     await Users.create(ipObject);
     res.json(ipObject);
+    console.log(req);
 });
 
 module.exports = router
