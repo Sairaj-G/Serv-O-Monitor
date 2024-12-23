@@ -7,12 +7,12 @@ import socket
 hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
-token = "4nv73YDP8FmP27gspMhYpar4LRYRmf0bmtwEYHVYjeUhieXNxYXPeqTvL3LDSws5trwYhSwhwxqX_fdGwdE8bQ=="
-org = "Servo-monitor"
-url = "http://localhost:8086"
+token = "xLd_515MvuRa9FzrgN7EvxPakHwQXlXoG6lIHs_iU__T-Ld0FD0cPoUT8GyfzAlpjq2l1v77nzj6X5qXwkV6PQ=="
+org = "ORG_NAME"
+url = "http://host.docker.internal:8086"
 write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 write_api = write_client.write_api(write_options=SYNCHRONOUS)
-bucket = "metrics_data"
+bucket = "BUCKET_NAME"
 
 def log_cpu_metric():
     cpu_metric = CPUMetrics()

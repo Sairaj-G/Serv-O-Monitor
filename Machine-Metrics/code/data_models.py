@@ -43,7 +43,7 @@ class NetworkMetrics:
     def __init__(self):
         self.host_name = get_hostname()
         self.ip_address = get_ip_address()
-        self.wifi_signal_strength_percent = get_wifi_signal_strength_percentage()
+        ##self.wifi_signal_strength_percent = get_wifi_signal_strength_percentage()
         self.interface_name = get_interface_name()
         self.download_speed = get_download_speed()
         self.upload_speed = get_upload_speed()
