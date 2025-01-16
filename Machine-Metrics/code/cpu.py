@@ -33,3 +33,4 @@ def get_num_processes():
     # Returns the number of procceses running 
     processes = psutil.pids()
     return len(processes)
+
