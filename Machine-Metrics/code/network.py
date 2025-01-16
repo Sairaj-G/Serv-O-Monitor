@@ -45,3 +45,12 @@ def get_download_speed():
 def get_upload_speed():
     upload_speed = network.upload()
     return upload_speed
+
+def get_hostname():
+    hostname = socket.gethostname()
+    return hostname
+
+def get_ip_address():
+    hostname = get_hostname()
+    ip_address = socket.gethostbyname(hostname)
+    return ip_address

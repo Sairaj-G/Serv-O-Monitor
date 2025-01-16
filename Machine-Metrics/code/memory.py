@@ -19,3 +19,4 @@ def get_swap_memory_total_GB():
 def get_swap_memory_used_GB():
     swap_memory_used = psutil.swap_memory()[1]/(1024**3)
     return swap_memory_used
+
