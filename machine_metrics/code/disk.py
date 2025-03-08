@@ -21,7 +21,7 @@ def get_disk_write_speed():
     final_disk_io = psutil.disk_io_counters()
     final_write_bytes = final_disk_io.write_bytes
     
-    return (final_write_bytes - initial_write_bytes) / 1000
+    return (final_write_bytes - initial_write_bytes) / 1000 
 
 def get_active_time():
     initial_disk_io = psutil.disk_io_counters()

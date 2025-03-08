@@ -41,7 +41,7 @@ Follow these steps to get the **Serv-O-Monitor** application up and running:
    - Follow the official [InfluxDB setup guide](https://docs.influxdata.com/influxdb/v2.0/get-started/) to create the token.
 
 4. **Run the python script**
-   - Install all the required python packages by running the following command in the Machine-Metrics directory.
+   - Install all the required python packages by running the following command in the machine-metrics directory.
     ```Bash
     pip install -r requirements.txt
     ```
@@ -50,7 +50,7 @@ Follow these steps to get the **Serv-O-Monitor** application up and running:
 
 5. **Setting up the backend**
    - Make sure you have node installed on your machine.
-   - Run the following commands to install all the required node packages in the WebApp/server directory.
+   - Run the following commands to install all the required node packages in the webapp/server directory.
    ```bash
    npm install
    ```
