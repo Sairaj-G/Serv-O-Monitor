@@ -6,15 +6,6 @@ import re
 
 network = speedtest.Speedtest(secure=True)
 
-def get_hostname():
-    hostname = socket.gethostname()
-    return hostname
-
-def get_ip_address():
-    hostname = get_hostname()
-    ip_address = socket.gethostbyname(hostname)
-    return ip_address
-
 def get_wifi_signal_strength_percentage():
     # Run the command to get Wi-Fi details
     result = subprocess.run(["iwconfig"], capture_output=True, text=True)
