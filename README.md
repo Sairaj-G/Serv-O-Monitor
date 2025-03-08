@@ -1,2 +1,2 @@
 # Serv-O-Monitor
-A remote server monitoring tool with a dashboard for real time monitoring
+This is a real-time remote server monitoring system. What the project aims at doing 
