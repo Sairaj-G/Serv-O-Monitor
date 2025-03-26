@@ -18,7 +18,8 @@ def log_cpu_metric():
     .field("num_physical_cores", cpu_metric.num_physical_cores) \
     .field("cpu_freq", cpu_metric.cpu_freq) \
     .field("max_freq", cpu_metric.max_freq) \
-    .field("num_processes", cpu_metric.num_processes)
+    .field("num_processes", cpu_metric.num_processes) \
+    .field("num_threads", cpu_metric.num_threads)
     
     write_api.write(bucket = BUCKET_NAME, org = ORG_NAME, record = point)
 

@@ -34,3 +34,8 @@ def get_num_processes():
     processes = psutil.pids()
     return len(processes)
 
+
+def get_num_threads():
+    # Returns the total number of threads across all processes
+    total_threads = sum(p.num_threads() for p in psutil.process_iter(['pid', 'name']))
+    return total_threads

@@ -11,6 +11,7 @@ class CPUMetrics:
     cpu_freq = 0
     max_freq = 0
     num_processes = 0
+    num_threads = 0
 
     def __init__(self):
         self.num_physical_cores = get_num_physical_cores()
@@ -19,6 +20,7 @@ class CPUMetrics:
         self.cpu_freq = get_cpu_freq()
         self.max_freq = get_max_freq()
         self.num_processes = get_num_processes()
+        self.num_threads = get_num_threads()
 
 class DiskMetrics:
 
