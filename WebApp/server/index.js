@@ -9,3 +9,7 @@ app.use("/getParams", endpoints);
 app.listen(3001, () => {
     console.log("Server running on port 3001");
 });
+
+app.get("/", (req, res) => {
+    res.send("Server running on port 3001");
+});
