@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const org = "ORG_NAME"
-const bucket = "BUCKET_NAME"
-const mytoken = "IdVszge1TJR1rc_UwHKwZ3lhyD7rpVd7Sp8jZQ7vQ_yEziF7gTCz9gSjE7Ui3ZXUDW4nfgzqXpKejqec6iyjSQ=="
-const myurl = 'http://127.0.0.1:8086'
+require("dotenv").config();
+
+const org = process.env.ORG || "ORG_NAME"
+const bucket = process.env.BUCKET || "BUCKET_NAME"
+const mytoken = process.env.MYTOKEN || "IdVszge1TJR1rc_UwHKwZ3lhyD7rpVd7Sp8jZQ7vQ_yEziF7gTCz9gSjE7Ui3ZXUDW4nfgzqXpKejqec6iyjSQ=="
+const myurl = process.env.MYURL || 'http://127.0.0.1:8086'
 
 router.get("/cpuMetrics", async(req, res)=>{
   const {InfluxDB, Point} = require('@influxdata/influxdb-client')
