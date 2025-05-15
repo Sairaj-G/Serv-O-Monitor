@@ -12,8 +12,9 @@ def update_metrics():
         log_memory_metrics()
 
         print("Added data")
-
+        # break
         time.sleep(60)
+        
 
 
 
