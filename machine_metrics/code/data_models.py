@@ -64,5 +64,3 @@ class MemoryMetrics:
         self.ram_usage_percent = get_ram_memory_used_percentage()
         self.swap_memory_GB = get_swap_memory_total_GB()
         self.swap_memory_used_GB = get_swap_memory_total_GB()
-
-
