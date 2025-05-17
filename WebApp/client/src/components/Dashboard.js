@@ -40,12 +40,55 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
     if (!ip) return;
 
     axios.get(`http://localhost:3001/getParams/cpuMetrics?time=${time}&ip=${ip}`)
-      .then(res => setCpuData(Object.values(res.data.util_percent || {})))
-      .catch(err => console.error(err));
+  .then(res => {
+    console.log(res.data);
 
-    axios.get(`http://localhost:3001/getParams/memoryMetrics?time=${time}&ip=${ip}`)
-      .then(res => setRamData(Object.values(res.data.ram_usage_percent || {})))
-      .catch(err => console.error(err));
+    // Filter keys that contain 'util_percent'
+    const utilData = Object.entries(res.data)
+      .filter(([key, _]) => key.includes('util_percent'))
+      .reduce((obj, [key, value]) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+      setCpuData(Object.values(utilData));
+      console.log(cpuData);
+  })
+  .catch(err => console.error(err));
+
+// axios.get(`http://localhost:3001/getParams/memoryMetrics?time=${time}&ip=${ip}`)
+//   .then(res => {
+//     console.log(res.data);
+//     // Filter keys that contain 'util_percent'
+//     const utilData = Object.entries(res.data)
+//       .filter(([key, _]) => key.includes('ram_usage_percent'))
+//       .reduce((obj, [key, value]) => {
+//         obj[key] = value;
+//         return obj;
+//       }, {});
+//       setRamData(Object.values(utilData));
+//       console.log(ramData);
+//   })
+//   .catch(err => console.error(err));
+axios.get(`http://localhost:3001/getParams/memoryMetrics?time=${time}&ip=${ip}`)
+  .then(res => {
+    console.log(res.data);
+
+    // Filter keys that contain 'ram_usage_percent'
+    const ramDataFiltered = Object.entries(res.data)
+      .filter(([key, _]) => key.includes('ram_usage_percent'))
+      .reduce((obj, [key, value]) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+
+    setRamData(Object.values(ramDataFiltered));
+  })
+  .catch(err => console.error(err));
+
+
+    // axios.get(`http://localhost:3001/getParams/memoryMetrics?time=${time}&ip=${ip}`)
+    //   .then(res => setRamData(Object.values(res.data.ram_usage_percent || {})))
+    //   .catch(err => console.error(err));
   };
 
   const handleSubmit = () => {
@@ -58,6 +101,7 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
   };
 
   const formatChartData = (dataObj) => {
+    // console.log(dataObj);
     const labels = dataObj.map((_, idx) => idx + 1);
     const data = dataObj;
 

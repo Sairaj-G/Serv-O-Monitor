@@ -13,7 +13,7 @@ def update_metrics():
 
         print("Added data")
         # break
-        time.sleep(60)
+        time.sleep(10)
         
 
 
