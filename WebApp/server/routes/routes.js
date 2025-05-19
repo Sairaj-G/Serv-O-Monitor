@@ -3,9 +3,9 @@ const router = express.Router();
 
 require("dotenv").config();
 
-const org = process.env.ORG || "Servo-monitor"
-const bucket = process.env.BUCKET || "metrics_data"
-const mytoken = process.env.MYTOKEN || "VnobvVWHxMg8ZG5HIUY6VP0nweVxiqPr91P08mlgCyNOBvHOWNZ3ZZRdXgYkm0JHBWT38myBOJYcXndgACiNGw=="
+const org = process.env.ORG || "ORG_NAME"
+const bucket = process.env.BUCKET || "BUCKET_NAME"
+const mytoken = process.env.MYTOKEN || "admin-token"
 const myurl = process.env.MYURL || 'http://127.0.0.1:8086'
 router.get("/cpuMetrics", async(req, res)=>{
   const {InfluxDB, Point} = require('@influxdata/influxdb-client')

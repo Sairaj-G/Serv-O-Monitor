@@ -25,22 +25,55 @@ ChartJS.register(
 );
 
 const ChartCard = memo(({ title, data, isLoading, error }) => (
-  <div className={`bg-white bg-opacity-90 backdrop-blur-md rounded-2xl p-6 text-gray-800 shadow-xl hover:shadow-2xl transition-all duration-300 border-l-8 ${
-    title.includes('CPU') ? 'border-red-400' :
-    title.includes('RAM') ? 'border-green-400' : 'border-blue-400'
-  }`}>
-    <h2 className="font-bold text-2xl mb-4 text-gray-900 tracking-wide uppercase">{title}</h2>
+  <div style={{
+    backgroundColor: 'white',
+    backdropFilter: 'blur(12px)',
+    borderRadius: '1rem',
+    padding: '1.5rem',
+    color: '#1f2937',
+    boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s',
+    borderLeft: '8px solid',
+    borderColor: title.includes('CPU') ? '#f87171' : title.includes('RAM') ? '#34d399' : '#60a5fa',
+  }}>
+    <h2 style={{
+      fontWeight: 'bold',
+      fontSize: '1.5rem',
+      marginBottom: '1rem',
+      color: '#111827',
+      letterSpacing: '0.05em',
+      textTransform: 'uppercase'
+    }}>{title}</h2>
     {isLoading ? (
-      <div className="flex justify-center items-center h-64">
-        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '16rem'
+      }}>
+        <div style={{
+          width: '2.5rem',
+          height: '2.5rem',
+          border: '4px solid #3b82f6',
+          borderTopColor: 'transparent',
+          borderRadius: '9999px',
+          animation: 'spin 1s linear infinite'
+        }} />
       </div>
     ) : error ? (
-      <div className="flex flex-col items-center text-red-700 h-64 justify-center">
-        <span className="text-2xl">⚠️</span>
-        <p className="mt-2 font-medium">{error}</p>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        color: '#b91c1c',
+        height: '16rem',
+        justifyContent: 'center'
+      }}>
+        <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+        <p style={{ marginTop: '0.5rem', fontWeight: '500' }}>{error}</p>
       </div>
     ) : (
-      <div className="h-64 w-full">
+      <div style={{ height: '16rem', width: '100%' }}>
         <Line
           data={data}
           options={{
@@ -167,17 +200,42 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-700 to-pink-700 px-4 py-8 sm:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(to bottom right, #312e81, #7c3aed, #be185d)',
+      padding: '2rem'
+    }}>
+      <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
+        <h1 style={{
+          fontSize: '2.5rem',
+          fontWeight: 'bold',
+          color: 'white',
+          textAlign: 'center',
+          marginBottom: '2.5rem',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
+        }}>
           System Monitoring Dashboard
         </h1>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-10 justify-center items-center">
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          marginBottom: '2.5rem',
+          alignItems: 'center',
+        }}>
           <select
             value={ip}
             onChange={(e) => setIp(e.target.value)}
-            className="p-3 bg-white bg-opacity-95 text-gray-800 rounded-lg shadow-lg w-full md:w-auto focus:ring-2 focus:ring-blue-500"
+            style={{
+              padding: '0.75rem',
+              backgroundColor: 'white',
+              color: '#1f2937',
+              borderRadius: '0.5rem',
+              width: '100%',
+              maxWidth: '300px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}
           >
             <option value="">Select IP</option>
             {ips.map((ip) => (
@@ -188,7 +246,15 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
           <select
             value={time}
             onChange={(e) => setTime(Number(e.target.value))}
-            className="p-3 bg-white bg-opacity-95 text-gray-800 rounded-lg shadow-lg w-full md:w-auto focus:ring-2 focus:ring-blue-500"
+            style={{
+              padding: '0.75rem',
+              backgroundColor: 'white',
+              color: '#1f2937',
+              borderRadius: '0.5rem',
+              width: '100%',
+              maxWidth: '300px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}
           >
             <option value={5}>Last 5 Minutes</option>
             <option value={10}>Last 10 Minutes</option>
@@ -203,16 +269,32 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
             <option value={10080}>Last 1 week</option>
           </select>
 
-          <div className="flex gap-3">
+          <div style={{ display: 'flex', gap: '1rem' }}>
             <button
               onClick={handleSubmit}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md transform hover:scale-105 transition duration-300"
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: '#2563eb',
+                color: 'white',
+                borderRadius: '0.5rem',
+                fontWeight: '600',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                transition: 'transform 0.2s',
+              }}
             >
               Submit
             </button>
             <button
               onClick={handleRefresh}
-              className="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md transform hover:scale-105 transition duration-300"
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: '#e5e7eb',
+                color: '#1f2937',
+                borderRadius: '0.5rem',
+                fontWeight: '600',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s',
+              }}
             >
               ↻
             </button>
@@ -220,35 +302,63 @@ export default function Dashboard({ ip, setIp, time, setTime }) {
         </div>
 
         {error && (
-          <div className="mb-8 p-4 bg-red-100 text-red-700 rounded-lg flex items-center justify-center shadow-md">
-            <span className="mr-2 text-xl">⚠️</span>
-            <span className="font-medium">{error}</span>
+          <div style={{
+            marginBottom: '2rem',
+            padding: '1rem',
+            backgroundColor: '#fee2e2',
+            color: '#b91c1c',
+            borderRadius: '0.5rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+          }}>
+            <span style={{ marginRight: '0.5rem', fontSize: '1.25rem' }}>⚠️</span>
+            <span style={{ fontWeight: '500' }}>{error}</span>
           </div>
         )}
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[{ key: 'cpuMetrics', label: 'CPU', gradient: 'from-red-400 to-red-600' },
-            { key: 'diskMetrics', label: 'Disk', gradient: 'from-yellow-400 to-yellow-600' },
-            { key: 'memoryMetrics', label: 'Memory', gradient: 'from-green-400 to-green-600' },
-            { key: 'networkMetrics', label: 'Network', gradient: 'from-blue-400 to-blue-600' }]
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '1rem',
+          marginBottom: '3rem',
+        }}>
+          {[{ key: 'cpuMetrics', label: 'CPU', gradient: '#f87171' },
+            { key: 'diskMetrics', label: 'Disk', gradient: '#facc15' },
+            { key: 'memoryMetrics', label: 'Memory', gradient: '#4ade80' },
+            { key: 'networkMetrics', label: 'Network', gradient: '#60a5fa' }]
             .map(({ key, label, gradient }) => (
               <button
                 key={key}
                 onClick={() => handleMetricClick(key)}
-                className={`bg-gradient-to-r ${gradient} text-white rounded-xl p-4 font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-white`}
+                style={{
+                  backgroundColor: gradient,
+                  color: 'white',
+                  borderRadius: '0.75rem',
+                  padding: '1rem',
+                  fontWeight: '600',
+                  fontSize: '1.125rem',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  transition: 'transform 0.2s',
+                }}
               >
                 {label}
               </button>
             ))}
         </div>
+
         {submitted && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '2rem',
+            marginBottom: '3rem',
+          }}>
             <ChartCard title="CPU Usage" data={formatChartData(cpuData)} isLoading={isLoading} error={error} />
             <ChartCard title="RAM Usage" data={formatChartData(ramData)} isLoading={isLoading} error={error} />
           </div>
         )}
-
-        
       </div>
     </div>
   );
@@ -260,94 +370,3 @@ Dashboard.propTypes = {
   time: PropTypes.number.isRequired,
   setTime: PropTypes.func.isRequired,
 };
-
-
-//FOR REFERENCE ONLY 
-
-
-// import React, { useState, useEffect, useCallback, memo } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import { Line } from 'react-chartjs-2';
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from 'chart.js';
-// import PropTypes from 'prop-types';
-
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
-
-// const ChartCard = memo(({ title, data, isLoading, error }) => (
-//   <div style={{
-//     backgroundColor: 'white',
-//     backdropFilter: 'blur(8px)',
-//     borderRadius: '1rem',
-//     padding: '1.5rem',
-//     color: '#1f2937',
-//     boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
-//     transition: 'all 0.3s',
-//     borderLeft: '8px solid',
-//     borderColor: title.includes('CPU') ? '#f87171' : title.includes('RAM') ? '#34d399' : '#60a5fa'
-//   }}>
-//     <h2 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem', color: '#111827', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{title}</h2>
-//     {isLoading ? (
-//       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '16rem' }}>
-//         <div style={{ width: '2.5rem', height: '2.5rem', border: '4px solid #3b82f6', borderTopColor: 'transparent', borderRadius: '9999px', animation: 'spin 1s linear infinite' }} />
-//       </div>
-//     ) : error ? (
-//       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#b91c1c', height: '16rem', justifyContent: 'center' }}>
-//         <span style={{ fontSize: '1.5rem' }}>⚠️</span>
-//         <p style={{ marginTop: '0.5rem', fontWeight: '500' }}>{error}</p>
-//       </div>
-//     ) : (
-//       <div style={{ height: '16rem', width: '100%' }}>
-//         <Line
-//           data={data}
-//           options={{
-//             responsive: true,
-//             maintainAspectRatio: false,
-//             plugins: {
-//               legend: { position: 'top', labels: { color: '#1f2937' } },
-//               tooltip: { mode: 'index', intersect: false },
-//             },
-//             scales: {
-//               y: {
-//                 beginAtZero: true,
-//                 max: 100,
-//                 title: { display: true, text: '% Usage', color: '#1f2937' },
-//                 grid: { color: 'rgba(0,0,0,0.1)' },
-//               },
-//               x: {
-//                 title: { display: true, text: 'Time', color: '#1f2937' },
-//                 grid: { display: false },
-//               },
-//             },
-//           }}
-//         />
-//       </div>
-//     )}
-//   </div>
-// ));
-
-// ChartCard.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   data: PropTypes.object.isRequired,
-//   isLoading: PropTypes.bool,
-//   error: PropTypes.string,
-// };
-
-
