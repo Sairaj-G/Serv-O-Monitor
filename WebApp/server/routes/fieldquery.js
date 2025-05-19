@@ -4,7 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 
 const INFLUX_URL = 'http://localhost:8086/query';
-const INFLUX_DB = 'BUCKET_NAME';
+const INFLUX_DB = 'metrics_data';
 
 router.get('/fieldkeys', async (req, res) => {
     try {
@@ -16,7 +16,7 @@ router.get('/fieldkeys', async (req, res) => {
         pretty: true
       },
       headers: {
-        Authorization: `Token admin-token`
+        Authorization: `Token VnobvVWHxMg8ZG5HIUY6VP0nweVxiqPr91P08mlgCyNOBvHOWNZ3ZZRdXgYkm0JHBWT38myBOJYcXndgACiNGw==`
       }
     });
 
